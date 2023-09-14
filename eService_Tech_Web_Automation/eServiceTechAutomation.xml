@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="eServiceTechWebAutomation suite">
+    <listeners>
+        <listener class-name="com.eservicetechweb.qa.util.ExtentReportListener"/>
+    </listeners>
+
+    <test name="eServiceTech Web test">
+
+
+        <classes>
+
+            <class name="com.eservicetechweb.qa.testcases.LoginTest"></class>
+            <class name="com.eservicetechweb.qa.testcases.AddEquipmentTest"></class>
+            <class name="com.eservicetechweb.qa.testcases.ImportEmployeeTest"></class>
+
+        </classes>
+
+
+    </test>
+</suite>

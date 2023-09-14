@@ -1,0 +1,12 @@
+URL = https://xapps1.e-emphasys.com/eServiceTech/Proxima/5.0/Web/LoginForm.aspx
+browser = chrome
+company_code = 553
+employee_code = E0055
+login_password = eet
+employee_name = Automation 1
+app_version = 5.0.0019
+app_environment = (PROXIMA)
+import_emp_popup_success_message = user is imported successfully.
+customer_code = C00000006
+equipment_model_code = 1010B
+task_added_success_message = Task has been added successfully.
