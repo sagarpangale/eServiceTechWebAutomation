@@ -3,15 +3,18 @@ package com.eservicetechweb.qa.testcases;
 import com.eservicetechweb.qa.base.BaseClass;
 import com.eservicetechweb.qa.pages.*;
 import com.eservicetechweb.qa.util.RandomStringGenerator;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
-public class VerifyTaskManipulationTest extends BaseClass {
+public class GenerateSignoffReportTest extends BaseClass {
     String service_order_no;
     String serial_num;
     String cust_unit_num;
+
+    String random_technician_name;
+    String random_customer_name;
     ChangeCompanyPage changeCompanyPage;
     LandingPage landingPage;
     HomePage homePage;
@@ -21,9 +24,12 @@ public class VerifyTaskManipulationTest extends BaseClass {
     AssignedOrdersPage assignedOrdersPage;
 
     AddSegmentPage addSegmentPage;
-    TasksPage tasksPage;
+    PartsPage partsPage;
+    SoftAssert softAssert;
 
-    public VerifyTaskManipulationTest() {
+    SignOffReportsPage signOffReportsPage;
+
+    public GenerateSignoffReportTest() {
         super();
     }
 
@@ -39,17 +45,23 @@ public class VerifyTaskManipulationTest extends BaseClass {
         createServiceOrdersPage = new CreateServiceOrdersPage();
         assignedOrdersPage = new AssignedOrdersPage();
         addSegmentPage = new AddSegmentPage();
-        tasksPage = new TasksPage();
+        partsPage = new PartsPage();
+        softAssert = new SoftAssert();
+        signOffReportsPage = new SignOffReportsPage();
+
 
     }
 
 
     @Test
 
-    public void verifyAddEquipment() throws Exception {
+    public void verifySignoffReport() throws Exception {
 //      Adding new equipment
-        serial_num = randomStringGenerator.getRandomString(8);
-        cust_unit_num = randomStringGenerator.getRandomString(8);
+        serial_num = addEquipmentPage.getRandomSerialNumber();
+        cust_unit_num = addEquipmentPage.getRandomCustomerUnitNumber();
+        random_technician_name = randomStringGenerator.getRandomString(8);
+        random_customer_name = randomStringGenerator.getRandomString(8);
+
         System.out.println(serial_num);
         System.out.println(cust_unit_num);
 
@@ -89,7 +101,6 @@ public class VerifyTaskManipulationTest extends BaseClass {
 //
 //        homePage.switchFocusToDefaultFrame();
 //
-//
 //        homePage.clickAssignedOrderTab();
 //        Thread.sleep(2000);
 
@@ -110,33 +121,35 @@ public class VerifyTaskManipulationTest extends BaseClass {
         Thread.sleep(5000);
         assignedOrdersPage.clickSelectedEntry();
         Thread.sleep(5000);
-        assignedOrdersPage.clickTasksBtn();
+        assignedOrdersPage.clickSignOffReportBtn();
         Thread.sleep(2000);
-
-//        Adding task
-        tasksPage.switchFocusToTasksWindow();
-//        tasksPage.clickAddTaskBtn();
-//        tasksPage.switchFocusToAddTaskWindow();
-//        Thread.sleep(2000);
-//        tasksPage.enterTaskCode();
-//        Thread.sleep(2000);
-//        tasksPage.clickSaveAndCloseBtn();
-//        Thread.sleep(2000);
-//        Assert.assertEquals(tasksPage.getPopupMessage(), prop.getProperty("task_added_success_message"));
-//        tasksPage.clickSucessPopupOKBtn();
-
-
-//        Edit task
-        tasksPage.clickEditBtn();
+        assignedOrdersPage.clickConfirmationPopupYesBtn();
+        assignedOrdersPage.switchFocusToSignOffReportFilter();
+        assignedOrdersPage.clickOkBtn();
         Thread.sleep(2000);
-        tasksPage.enterHours();
-        Thread.sleep(2000);
-        tasksPage.clickEditBtn();
+        signOffReportsPage.clickCaptureSignatureBtn();
+        Thread.sleep(5000);
 
-//        Delete task
-//        tasksPage.clickDeleteBtn();
-//        tasksPage.clickDeleteTaskPopupYesBtn();
-//        Thread.sleep(2000);
+//      Entering technician signoff
+        signOffReportsPage.switchFrameToSignatureCanvas();
+        Thread.sleep(5000);
+        signOffReportsPage.createSignature();
+        Thread.sleep(5000);
+        signOffReportsPage.enterTechnicianName(random_technician_name);
+        Thread.sleep(2000);
+        signOffReportsPage.clickAcceptBtn();
+        Thread.sleep(5000);
+
+
+//      Entering customer signoff
+        signOffReportsPage.switchFrameToSignatureCanvas();
+        Thread.sleep(5000);
+        signOffReportsPage.createSignature();
+        Thread.sleep(2000);
+        signOffReportsPage.enterCustomerName(random_customer_name);
+        Thread.sleep(2000);
+        signOffReportsPage.clickAcceptBtn();
+        Thread.sleep(5000);
 
 
     }

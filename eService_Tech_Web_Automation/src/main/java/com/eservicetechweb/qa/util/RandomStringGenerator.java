@@ -20,7 +20,7 @@ public class RandomStringGenerator {
             // add Character one by one in end of sb
             sb.append(AlphaNumericString.charAt(index));
         }
-        System.out.println(sb);
+//        System.out.println(sb);
         for (int i = n - 3; i < n; i++) {
 
             // generate a random number between

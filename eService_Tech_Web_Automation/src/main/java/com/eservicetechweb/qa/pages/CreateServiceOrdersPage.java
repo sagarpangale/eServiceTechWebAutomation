@@ -1,7 +1,6 @@
 package com.eservicetechweb.qa.pages;
 
 import com.eservicetechweb.qa.base.BaseClass;
-import com.eservicetechweb.qa.util.StringSplitter;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -36,6 +35,9 @@ public class CreateServiceOrdersPage extends BaseClass {
 
     @FindBy(id = "popup_ok")
     WebElement serviceOrderCreatedPopupOkBtn;
+
+    @FindBy(id = "popup_content")
+    WebElement serviceOrderPopupText;
 
 
     public CreateServiceOrdersPage() {
@@ -73,6 +75,11 @@ public class CreateServiceOrdersPage extends BaseClass {
         addWait(serviceOrderCreatedPopupOkBtn);
         clickOn(serviceOrderCreatedPopupOkBtn);
 
+    }
+
+    public void getServiceOrderPopupText() {
+
+        System.out.println(serviceOrderPopupText.getText());
     }
 
 

@@ -2,7 +2,6 @@ package com.eservicetechweb.qa.pages;
 
 import com.eservicetechweb.qa.base.BaseClass;
 import org.openqa.selenium.By;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -11,7 +10,7 @@ public class ChangeCompanyPage extends BaseClass {
 
     WebElement selectCompanyRow;
 
-    @FindBy(xpath = "//div[@id='UpServiceCenter']//span[@id='lstServiceCenter_lblServiceCenter_2']")
+    @FindBy(xpath = "//div[@id='UpServiceCenter']//span[contains(text(),'SC001')]")
     WebElement selectServiceCenterRow;
 
     @FindBy(id = "btnChangeCompanyServiceCenter")

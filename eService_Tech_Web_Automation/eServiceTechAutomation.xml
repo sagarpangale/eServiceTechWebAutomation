@@ -13,7 +13,9 @@
 
             <class name="com.eservicetechweb.qa.testcases.LoginTest"></class>
             <class name="com.eservicetechweb.qa.testcases.AddEquipmentTest"></class>
-            <class name="com.eservicetechweb.qa.testcases.ImportEmployeeTest"></class>
+            <class name="com.eservicetechweb.qa.testcases.TaskManipulationTest"></class>
+            <class name="com.eservicetechweb.qa.testcases.PartManipulationTest"></class>
+            <class name="com.eservicetechweb.qa.testcases.OthersPartManipulationTest"></class>
 
         </classes>
 

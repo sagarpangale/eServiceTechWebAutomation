@@ -7,7 +7,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class VerifyAllScreensTest extends BaseClass {
+public class AllScreensTest extends BaseClass {
     ChangeCompanyPage changeCompanyPage;
     LandingPage landingPage;
     HomePage homePage;
@@ -24,7 +24,7 @@ public class VerifyAllScreensTest extends BaseClass {
 
     TechniciansStatusPage techniciansStatusPage;
 
-    public VerifyAllScreensTest() {
+    public AllScreensTest() {
 
         super();
     }

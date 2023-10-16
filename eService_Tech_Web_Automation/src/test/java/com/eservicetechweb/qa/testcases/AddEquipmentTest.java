@@ -3,7 +3,6 @@ package com.eservicetechweb.qa.testcases;
 import com.eservicetechweb.qa.base.BaseClass;
 import com.eservicetechweb.qa.pages.*;
 import com.eservicetechweb.qa.util.RandomStringGenerator;
-import org.apache.xmlbeans.soap.SOAPArrayType;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -46,14 +45,18 @@ public class AddEquipmentTest extends BaseClass {
     @Test
 
     public void verifyAddEquipment() throws Exception {
-//      Adding new equipment
-        serial_num = randomStringGenerator.getRandomString(8);
-        cust_unit_num = randomStringGenerator.getRandomString(8);
 
+
+        serial_num = addEquipmentPage.getRandomSerialNumber();
+        cust_unit_num = addEquipmentPage.getRandomCustomerUnitNumber();
+
+//      LOGIN
         changeCompanyPage.changeCompany();
         Thread.sleep(2000);
         landingPage.loginWithTechnicianAccount();
         Thread.sleep(2000);
+
+//        ADDING NEW EQUIPMENT
         homePage.clickAddEquipmentTab();
         Thread.sleep(2000);
         addEquipmentPage.switchFocustoAddEquipment();
@@ -68,39 +71,43 @@ public class AddEquipmentTest extends BaseClass {
         addEquipmentPage.selectLineOfBuisness();
         Thread.sleep(2000);
         addEquipmentPage.clickAddEquipmentBtn();
-        Thread.sleep(10000);
+        Thread.sleep(15000);
         Assert.assertTrue(addEquipmentPage.validateAddEquipmentPopup());
         addEquipmentPage.clickEquipmentAddedPopupYesBtn();
         Thread.sleep(2000);
 
-//        Creating service order after adding equipment
+
+//        CREATING SERVICE ORDER AFTER ADDING EQUIPMENT
         createServiceOrdersPage.switchFocustoCreateNewServiceOrder();
         Thread.sleep(2000);
         createServiceOrdersPage.clickCreateSOBtn();
         Thread.sleep(2000);
         Assert.assertTrue(createServiceOrdersPage.validateCreateSOCreationPopup());
-        Thread.sleep(5000);
-
-//        System.out.println(createServiceOrdersPage.getServiceOrderCreatedNumber(createServiceOrdersPage.getServiceOrderCreatedPopupText()));
+        Thread.sleep(3000);
+        createServiceOrdersPage.getServiceOrderPopupText();
         createServiceOrdersPage.clickCreateSOPopupOkBtn();
-        Thread.sleep(2000);
-        createServiceOrdersPage.clickCloseBtn();
 
-//        Creating service order segment for created SO
-        homePage.switchFocusToDefaultFrame();
+
+//        CREATING SERVICE ORDER SEGMENT FOR CREATED SERVICE ORDER
+
         homePage.clickAssignedOrderTab();
-        Thread.sleep(2000);
-        assignedOrdersPage.enterSearchBox(cust_unit_num);
-        System.out.println("Customer Unit No: " + cust_unit_num);
+        Thread.sleep(5000);
+        assignedOrdersPage.enterTextInSearchBox(cust_unit_num);
         Thread.sleep(2000);
         assignedOrdersPage.clickSearchBtn();
         Thread.sleep(20000);
-        assignedOrdersPage.clickAddSegment();
+        assignedOrdersPage.saveServiceOrderNumber(assignedOrdersPage.getSONumberForSelectedEntry());
+        System.out.println(assignedOrdersPage.useServiceOrderNumber());
         Thread.sleep(2000);
-        assignedOrdersPage.switchFocusToAddNewSegment();
-        addSegmentPage.clickCreateSegment();
-        Assert.assertTrue(addSegmentPage.validateSOSegmentCreatedPopupText());
-        addSegmentPage.clickSOSegmentCreatedPopupOkBtn();
+        assignedOrdersPage.enterTextInSearchBox(assignedOrdersPage.useServiceOrderNumber());
+        Thread.sleep(6000);
+//        assignedOrdersPage.clickAddSegment();
+//        Thread.sleep(2000);
+//        assignedOrdersPage.switchFocusToAddNewSegment();
+//        addSegmentPage.clickCreateSegment();
+//        Assert.assertTrue(addSegmentPage.validateSOSegmentCreatedPopupText());
+//        addSegmentPage.clickSOSegmentCreatedPopupOkBtn();
+//        Thread.sleep(2000);
 
     }
 

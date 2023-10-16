@@ -1,6 +1,8 @@
 package com.eservicetechweb.qa.pages;
 
 import com.eservicetechweb.qa.base.BaseClass;
+import com.eservicetechweb.qa.util.RandomNumberGenerator;
+import com.eservicetechweb.qa.util.RandomStringGenerator;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +11,9 @@ import org.openqa.selenium.support.ui.Select;
 
 
 public class AddEquipmentPage extends BaseClass {
+
+    RandomNumberGenerator randomNumberGenerator;
+    RandomStringGenerator randomStringGenerator;
 
     @FindBy(id = "btnSaveClose")
     WebElement addEquipmentBtn;
@@ -91,8 +96,30 @@ public class AddEquipmentPage extends BaseClass {
     }
 
 
-    public void enterSerialNumber(String serialNum) throws Exception {
+    public String getRandomSerialNumber() {
 
+        randomStringGenerator = new RandomStringGenerator();
+        randomNumberGenerator = new RandomNumberGenerator();
+
+        return "Sr No." + randomStringGenerator.getRandomString(RandomNumberGenerator.getRandomNumber(6, 1));
+
+
+    }
+
+
+    public String getRandomCustomerUnitNumber() {
+
+        randomStringGenerator = new RandomStringGenerator();
+        randomNumberGenerator = new RandomNumberGenerator();
+
+        return "cust no" + randomStringGenerator.getRandomString(RandomNumberGenerator.getRandomNumber(6, 1));
+
+
+    }
+
+
+    public void enterSerialNumber(String serialNum) throws Exception {
+        
         sendKeys(serialNoTextBox, serialNum);
 
 
@@ -126,6 +153,7 @@ public class AddEquipmentPage extends BaseClass {
 
     }
 
+
     public boolean validateAddEquipmentPage() {
         addWait(addEquipmentBtn);
         return addEquipmentBtn.isDisplayed();
@@ -134,7 +162,6 @@ public class AddEquipmentPage extends BaseClass {
     public boolean validateAddEquipmentPopup() {
 
         addWait(equipmentAddedPopupTitle);
-
         return equipmentAddedPopupTitle.isDisplayed();
 
     }

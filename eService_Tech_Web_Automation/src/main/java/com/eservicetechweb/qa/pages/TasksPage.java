@@ -49,6 +49,8 @@ public class TasksPage extends BaseClass {
     WebElement deleteTaskNoBtn;
 
 
+
+
     public TasksPage() {
         PageFactory.initElements(driver, this);
     }
@@ -88,6 +90,7 @@ public class TasksPage extends BaseClass {
         sendKeys(taskCodeTextBox, String.valueOf(Keys.ARROW_DOWN));
         sendKeys(taskCodeTextBox, String.valueOf(Keys.ARROW_RIGHT));
         sendKeys(taskCodeTextBox, String.valueOf(Keys.ENTER));
+
 
     }
 
@@ -141,5 +144,35 @@ public class TasksPage extends BaseClass {
         return popupMessage.getText();
     }
 
+    public void addNewTask() throws Exception {
+        switchFocusToTasksWindow();
+        clickAddTaskBtn();
+        switchFocusToAddTaskWindow();
+        Thread.sleep(2000);
+        enterTaskCode();
+        Thread.sleep(5000);
+        clickSaveAndCloseBtn();
+        Thread.sleep(2000);
+
+    }
+    public void editTask() throws Exception {
+
+        switchFocusToTasksWindow();
+        clickEditBtn();
+        Thread.sleep(2000);
+        enterHours();
+        Thread.sleep(2000);
+        clickEditBtn();
+        Thread.sleep(2000);
+    }
+
+    public void deleteTask() throws Exception {
+
+        switchFocusToTasksWindow();
+        clickDeleteBtn();
+        Thread.sleep(2000);
+        clickDeleteTaskPopupYesBtn();
+        Thread.sleep(2000);
+    }
 }
 

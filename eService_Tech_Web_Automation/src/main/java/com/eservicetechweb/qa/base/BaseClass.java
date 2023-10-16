@@ -80,6 +80,7 @@ public class BaseClass {
             driver = new ChromeDriver(option);
             actions = new Actions(driver);
 
+
         } else if (browserName.equals("firefox")) {
 
 //            WebDriverManager.firefoxdriver().setup();
